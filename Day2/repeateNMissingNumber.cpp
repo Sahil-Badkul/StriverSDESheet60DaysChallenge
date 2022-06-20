@@ -40,12 +40,51 @@ void math(vector<int> &arr){
 }
 
 void xors(vector<int> &arr){
-
+    int n = arr.size();
+    int xorr = arr[0];
+    //1. xor with arr
+    for(int i = 1; i < n; i++) {
+        xorr ^= arr[i];
+    }
+    //2. xor with 1...n
+    for(int i = 1; i <= n; i++){
+        xorr ^= i;
+    }
+    //3. get rightmost set bit
+    int set_bit_no = xorr & ~(xorr -1);
+    //4. seprate into two bucket
+    int x = 0, y = 0;
+    for(int i = 0; i < n; i++){
+        if(arr[i] & set_bit_no){
+            x = x ^ arr[i];
+        }else{
+            y = y ^ arr[i];
+        }
+    }
+    //5. seprate (1..n) into two bucket
+    for(int i = 1; i <= n; i++){
+        if(i & set_bit_no){
+            x = x ^ i;
+        }else{
+            y = y ^ i;
+        }
+    }
+    //6. check for num. in arr
+    int x_cnt = 0;
+    for(int i = 0; i < n; i++){
+        if(arr[i] == x) x_cnt++;
+    }
+    if(x_cnt == 0){
+        cout<<"rep : "<< y <<" , missing : "<< x <<endl;
+        return;
+    }
+    cout<<"rep : "<< x <<" , missing : "<< y <<endl;
 }
 int main()
 {
     vector<int> arr = {1, 3, 3, 4, 5, 6};
     repNmis(arr);
     math(arr);
+    xors(arr);
     return 0;
 }
