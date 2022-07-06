@@ -33,7 +33,7 @@ void findPattern(string p, string s)
 {
     int M = s.size();
     int N = p.size();
-    vector<int> prefix = lps(p);
+    vector<int> prefix = lps(p);    // finding lps of pattern
     int i = 0, j = 0;
     while(i < M){
         if(s[i] == p[j]){
