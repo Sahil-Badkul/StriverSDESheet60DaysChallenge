@@ -33,12 +33,12 @@ long long mergeSort(long long low, long long high, long long arr[], long long te
 
         inve_cnt += merge(low, mid+1, high, arr, temp);
     }
-    return inve_cnt;
+    return (int) inve_cnt;
 }
-long long main()
+int main()
 {
-    long long n = 5;
-    long long arr[] = {5,3,2,1,4};
+    long long n = 3;
+    long long arr[] = {1,3,2};
     long long temp[n];
     cout<<"Total inversion are : "<<mergeSort(0, n-1, arr, temp);
     return 0;
